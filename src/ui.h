@@ -1,5 +1,11 @@
 #ifndef UI
 #define UI
-int startVimUI();
+#include <termios.h>
+
+typedef struct termios* termios_p;
+void prepareUI();
+void revertToCanonical();
+void startUIElementHandler();
+void stopUIElementHandler();
 #endif
 
