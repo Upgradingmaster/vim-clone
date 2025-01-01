@@ -2,14 +2,16 @@
 CC = gcc
 WARNINGS = -Wall -Wextra -Werror
 # Supports multiple dirs
-INCDIRS = src 
+INCDIRS = src $(HOME)/Development/libs/C/Logger/include/
 OPT = -O0
 DEBUG = -g
 ASAN =
 # ASAN = -fsanitize=address 
 DPEN = -MMD 
 CFLAGS = $(WARNINGS) $(foreach i, $(INCDIRS), -I$(i) )$(OPT) $(DEBUG) $(ASAN) 
-LDFLAGS =  
+
+LDFLAGS = -llogger -L$(HOME)/Development/libs/C/Logger/lib/ 
+RTP =  -Wl,-rpath=$(HOME)/Development/libs/C/Logger/lib/ 
 
 
 # Directories
@@ -29,11 +31,11 @@ all: $(BIN)
 
 # Linking the .o files
 $(BIN): $(OBJS) | $(BUILD_DIR)
-	$(CC) $(CFLAGS) $(OBJS) -o $@ $(LDFLAGS)
+	$(CC) $(CFLAGS) $(OBJS) -o $@ $(LDFLAGS) $(RTP)
 
 # Compile src files -> .o and .d files 
 $(OBJ_DIR)/%.o : $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(DPEN) -c $< -o $@ 
+	$(CC) $(CFLAGS) $(DPEN) -c $< -o $@ $(LDFLAGS)
 
 # Directories
 $(BUILD_DIR) $(OBJ_DIR):

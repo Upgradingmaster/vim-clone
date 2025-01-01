@@ -9,11 +9,14 @@ static termios_p initTermios(int fd);
 void prepareUI() {
     old = initTermios(0);
 
+    // Set raw
     termios_p raw = initTermios(0);
     cfmakeraw(raw);
-    tcsetattr(0, TCSANOW,  raw);  // Set raw
+    tcsetattr(0, TCSANOW,  raw);  
     free(raw);
-    puts("\033[2J"); // Clear Screen
+
+    // Enable alternate screen
+    puts("\x1b[?1049h"); 
 
     /*pthread_t keyListenerThread;*/
     /*pthread_create(&keyListenerThread, NULL, startKeyListener, NULL);*/
@@ -31,6 +34,7 @@ void revertToCanonical() {
     if (old) {
         tcsetattr(0, TCSANOW,  old); 
         free(old);
+        puts("\x1b[?1049l"); // Disable alternate screen
     }
 }
 
