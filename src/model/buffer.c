@@ -12,11 +12,10 @@ BufferList newBufferList(){
 
 Buffer newBuffer(char* contents) {
     Buffer b = { 
-        .contents = contents,
-        .c_row = 0,
-        .c_col = 0,
-        .v_top = 0,
-        .v_bottom = 0
+        .headLine = 0,
+        .tailLine = 0,
+        .curr_row = 0,
+        .curr_col = 0,
     };
     return b;
 }

@@ -2,7 +2,7 @@
 CC = gcc
 WARNINGS = -Wall -Wextra -Werror
 # Supports multiple dirs
-INCDIRS = src $(HOME)/Development/libs/C/Logger/include/
+INCDIRS = src $(HOME)/.local/include
 OPT = -O0
 DEBUG = -g
 ASAN =
@@ -10,8 +10,8 @@ ASAN =
 DPEN = -MMD 
 CFLAGS = $(WARNINGS) $(foreach i, $(INCDIRS), -I$(i) )$(OPT) $(DEBUG) $(ASAN) 
 
-LDFLAGS = -llogger -L$(HOME)/Development/libs/C/Logger/lib/ 
-RTP =  -Wl,-rpath=$(HOME)/Development/libs/C/Logger/lib/ 
+LDFLAGS = -llogger -L$(HOME)/.local/lib/  
+RTP = -Wl,-rpath=$(HOME)/.local/lib/
 
 
 # Directories

@@ -40,10 +40,3 @@ void revertToCanonical() {
 
 
 
-void startUIElementHandler() {
-
-}
-
-void stopUIElementHandler() {
-
-}

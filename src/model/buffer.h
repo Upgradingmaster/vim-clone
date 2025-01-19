@@ -2,19 +2,20 @@
 # define BUFFER
 #include "lines.h"
 
+// Linked list of lines
 typedef struct {
     Line headLine;
     Line tailLine;
-    int c_row;
-    int c_col;
-    int v_top;
-    int v_bottom;
+    int curr_row;
+    int curr_col;
 } Buffer;
 
 typedef struct {
     Buffer* buffers;
     int size;
 } BufferList;
+
+
 
 BufferList newBufferList();
 Buffer newBuffer(char* contents);
