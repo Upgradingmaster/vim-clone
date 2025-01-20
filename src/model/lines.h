@@ -11,8 +11,9 @@ typedef struct Line {
     struct Line* next;
     struct Line* prev;
 } Line_t;
-Line_t* newLine();
+Line_t* newLine(char[]);
 void destroyLine(Line_t*);
+void lineLog(Line_t);
 
 /* ---Line Content - Gap Buffer--- */
 typedef struct LineContent {
@@ -23,8 +24,8 @@ typedef struct LineContent {
     int capacity;
 } LineContent_t;
 
-LineContent_t* newLC();
-void destroyLC(LineContent_t*);
+LineContent_t* newLineContent(char[]);
+void destroyLineContent(LineContent_t*);
 
 // Insert
 void lcInsertChar(LineContent_t*, char);
@@ -36,6 +37,7 @@ char lcNeedResize(LineContent_t*);
 void lcResize(LineContent_t*);
 
 // Gap
+
 
 
 

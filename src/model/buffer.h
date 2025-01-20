@@ -2,27 +2,43 @@
 # define BUFFER
 #include "lines.h"
 
-// Linked list of lines
-typedef struct {
-    Line headLine;
-    Line tailLine;
+
+#define INIT_BUF_CAP 2
+
+typedef struct Buffer Buffer_t;
+typedef struct BufferList BufferList_t;
+
+/* Buffer: Linked list of lines */
+struct Buffer {
+    Line_t* head;
+    Line_t* tail;
+    Line_t* curr;
     int curr_row;
     int curr_col;
-} Buffer;
+};
+int newBuffer(BufferList_t*);
+void destroyBuffer(Buffer_t*);
+void bAddLine(Buffer_t*, Line_t*);
 
-typedef struct {
-    Buffer* buffers;
+void bLog(Buffer_t);
+
+struct BufferList{
+    Buffer_t* buffers;
     int size;
-} BufferList;
+    int capacity;
+};
+
+BufferList_t* newBufferList();
+
+int blAppendBuffer(BufferList_t*, Buffer_t);
+
+void blDestoryBufferAt(BufferList_t*, int);
+void blDestory(BufferList_t*);
+char blIsEmpty(BufferList_t*);
+
+void blGrow(BufferList_t*);
 
 
+void blLog(BufferList_t);
 
-BufferList newBufferList();
-Buffer newBuffer(char* contents);
-
-void addBuffer(BufferList, Buffer);
-void destoryBuffer(BufferList, int i);
-void destoryAllBuffers(BufferList bl);
-
-void logAllBuffers(BufferList bl);
 # endif
