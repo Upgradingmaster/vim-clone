@@ -2,36 +2,45 @@
 #include <stdlib.h>
 #include <string.h>
 #include "model/buffer.h"
-#include "model/lines.h"
+#include "model/bufferlist.h"
+#include "model/line.h"
 #include "keyhandler.h"
 #include "ui.h"
 #include "logger.h"
 
 
 int main( int argc, char** argv) {
-    int success = LoggerOpen(1);
-    if (success == -1) puts("Failed to open Logger");
-
     if (argc > 1) {
         // Flags handling
-        puts(*argv);
+        if (strcmp(argv[1], "--debug") == 0) {
+            if (LoggerOpen(1) == -1) puts("Failed to open Logger");
+            Line_t* line = newLineN(5);
+            lineLog(*line);
 
-        BufferList_t* bl = newBufferList();
-        Line_t* line = newLine("abc");
-        Line_t* line1 = newLine("deff");
-        Line_t* line2 = newLine("hellooooo");
-        int i_buf = newBuffer(bl);
-        bAddLine(&bl->buffers[i_buf], line);
-        bAddLine(&bl->buffers[i_buf], line1);
-        bAddLine(&bl->buffers[i_buf], line2);
-
-
-
-        blDestory(bl);
-        LoggerClose();
-
+            while(1) {
+                char a = getchar();
+                switch (a) {
+                    case '\n': continue;
+                    case 'd': lineDeleteChar(line); break;
+                    case 'l': lineLeft(line); break;
+                    case 'r': lineRight(line); break;
+                    case 'm': 
+                              char b = getchar();
+                              int c = atoi(&b);
+                              lineMoveGap(line, c);
+                              break;
+                            
+                    default: lineInsertChar(line, a);
+                }
+                lineLog(*line);
+            }
+            destroyLine(line);
+            LoggerClose();
+        }
         return 0;
     }
+    int success = LoggerOpen(1);
+    if (success == -1) puts("Failed to open Logger");
 
     prepareUI();
 

@@ -5,7 +5,7 @@ WARNINGS = -Wall -Wextra -Werror
 INCDIRS = src src/model $(HOME)/.local/include
 OPT = -O0
 DEBUG = -g
-# ASAN =
+ASAN =
 ASAN = -fsanitize=address 
 # DPEN = -MMD 
 CFLAGS = $(WARNINGS) $(foreach i, $(INCDIRS), -I$(i)) $(OPT) $(DEBUG) $(ASAN) 

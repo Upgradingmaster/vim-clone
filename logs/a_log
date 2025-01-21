@@ -4,3 +4,79 @@
 >> LINE: abc
 >> LINE: deff
 >> LINE: hellooooo
+>> LINE: abc
+>> LINE: deff
+>> LINE: hellooooo
+>> LINE: abc
+>> LINE: deff
+>> LINE: hellooooo
+>> LINE: abc
+>> LINE: deff
+>> LINE: hellooooo
+>> LINE: []
+>> LINE: []
+>> LINE: []
+>> LINE: [_____]
+>> LINE: []
+>> LINE: []
+>> LINE: []
+>> LINE: [_____]
+>> LINE: []
+>> LINE: []
+>> LINE: []
+>> LINE: [_____]
+>> LINE: [abc]
+>> LINE: [deff]
+>> LINE: [hellooooo]
+>> LINE: [_____]
+>> LINE: [_____] | Capacity: 5 | Size: 5 | GS: 0 | GE: 5
+>> LINE: [_____] | Capacity: 5 | Size: 5 | GS: 0 | GE: 5
+>> LINE: [_____] | Capacity: 5 | Size: 0 | GS: 0 | GE: 5
+>> LINE: [a____] | Capacity: 5 | Size: 1 | GS: 1 | GE: 5
+>> LINE: [aa___] | Capacity: 5 | Size: 2 | GS: 2 | GE: 5
+>> LINE: [aaa__] | Capacity: 5 | Size: 3 | GS: 3 | GE: 5
+>> LINE: [aaaa_] | Capacity: 5 | Size: 4 | GS: 4 | GE: 5
+>> LINE: [aaaaa] | Capacity: 5 | Size: 5 | GS: 5 | GE: 5
+>> LINE: [aaaaaa____] | Capacity: 10 | Size: 6 | GS: 6 | GE: 10
+>> LINE: [aaaaaaa___] | Capacity: 10 | Size: 7 | GS: 7 | GE: 10
+>> LINE: [aaaaaaaa__] | Capacity: 10 | Size: 8 | GS: 8 | GE: 10
+>> LINE: [aaaaaaaaa_] | Capacity: 10 | Size: 9 | GS: 9 | GE: 10
+>> LINE: [aaaaaaaaaa] | Capacity: 10 | Size: 10 | GS: 10 | GE: 10
+>> LINE: [aaaaaaaaaaa_________] | Capacity: 20 | Size: 11 | GS: 11 | GE: 20
+>> LINE: [aaaaaaaaaaaa________] | Capacity: 20 | Size: 12 | GS: 12 | GE: 20
+>> LINE: [aaaaaaaaaaaaa_______] | Capacity: 20 | Size: 13 | GS: 13 | GE: 20
+>> LINE: [aaaaaaaaaaaaaa______] | Capacity: 20 | Size: 14 | GS: 14 | GE: 20
+>> LINE: [aaaaaaaaaaaaaaa_____] | Capacity: 20 | Size: 15 | GS: 15 | GE: 20
+>> LINE: [aaaaaaaaaaaaaaaa____] | Capacity: 20 | Size: 16 | GS: 16 | GE: 20
+>> LINE: [aaaaaaaaaaaaaaaaa___] | Capacity: 20 | Size: 17 | GS: 17 | GE: 20
+>> LINE: [aaaaaaaaaaaaaaaaaa__] | Capacity: 20 | Size: 18 | GS: 18 | GE: 20
+>> LINE: [aaaaaaaaaaaaaaaaaaa_] | Capacity: 20 | Size: 19 | GS: 19 | GE: 20
+>> LINE: [aaaaaaaaaaaaaaaaaaaa] | Capacity: 20 | Size: 20 | GS: 20 | GE: 20
+>> LINE: [aaaaaaaaaaaaaaaaaaaaa___________________] | Capacity: 40 | Size: 21 | GS: 21 | GE: 40
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaa__________________] | Capacity: 40 | Size: 22 | GS: 22 | GE: 40
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaa_________________] | Capacity: 40 | Size: 23 | GS: 23 | GE: 40
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaa________________] | Capacity: 40 | Size: 24 | GS: 24 | GE: 40
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaa_______________] | Capacity: 40 | Size: 25 | GS: 25 | GE: 40
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaa______________] | Capacity: 40 | Size: 26 | GS: 26 | GE: 40
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaa_____________] | Capacity: 40 | Size: 27 | GS: 27 | GE: 40
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaa____________] | Capacity: 40 | Size: 28 | GS: 28 | GE: 40
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaaa___________] | Capacity: 40 | Size: 29 | GS: 29 | GE: 40
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa__________] | Capacity: 40 | Size: 30 | GS: 30 | GE: 40
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_________] | Capacity: 40 | Size: 31 | GS: 31 | GE: 40
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa________] | Capacity: 40 | Size: 32 | GS: 32 | GE: 40
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_______] | Capacity: 40 | Size: 33 | GS: 33 | GE: 40
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa______] | Capacity: 40 | Size: 34 | GS: 34 | GE: 40
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_____] | Capacity: 40 | Size: 35 | GS: 35 | GE: 40
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa____] | Capacity: 40 | Size: 36 | GS: 36 | GE: 40
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa___] | Capacity: 40 | Size: 37 | GS: 37 | GE: 40
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa__] | Capacity: 40 | Size: 38 | GS: 38 | GE: 40
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_] | Capacity: 40 | Size: 39 | GS: 39 | GE: 40
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa] | Capacity: 40 | Size: 40 | GS: 40 | GE: 40
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_______________________________________] | Capac
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa______________________________________] | Capac
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_____________________________________] | Capac
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa____________________________________] | Capac
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa___________________________________] | Capac
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa__________________________________] | Capac
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa_________________________________] | Capac
+>> LINE: [aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
