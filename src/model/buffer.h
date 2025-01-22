@@ -15,8 +15,7 @@ struct Buffer {
 };
 int newBuffer(BufferList_t*);
 void destroyBuffer(Buffer_t*);
-void bAddLine(Buffer_t*, Line_t*);
-
 void bLog(Buffer_t);
 
+void bAddLine(Buffer_t*, Line_t*);
 # endif

@@ -5,10 +5,7 @@
 #include "buffer.h"
 #include "line.h"
 
-
-
 /* Buffer: Linked list of lines */
-
 // Create a new Empty Buffer and attach it to the buffer list 
 // Returns a the index in the list
 int newBuffer(BufferList_t* bl) {
@@ -28,6 +25,14 @@ void destroyBuffer(Buffer_t* b) {
     free(b);
 }
 
+void bLog(Buffer_t b) {
+    while(b.curr != NULL) {
+        lineLog(*b.curr);
+        b.curr = b.curr->next;
+    }
+    b.curr = b.head;
+}
+
 void bAddLine(Buffer_t* b, Line_t* l) {
     if (b->head == NULL || b->tail == NULL || b->curr == NULL) { // Empty
         b->curr = l;
@@ -40,11 +45,4 @@ void bAddLine(Buffer_t* b, Line_t* l) {
 
 }
 
-void bLog(Buffer_t b) {
-    while(b.curr != NULL) {
-        lineLog(*b.curr);
-        b.curr = b.curr->next;
-    }
-    b.curr = b.head;
-}
 

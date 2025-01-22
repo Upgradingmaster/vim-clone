@@ -24,10 +24,16 @@ int main( int argc, char** argv) {
                     case 'd': lineDeleteChar(line); break;
                     case 'l': lineLeft(line); break;
                     case 'r': lineRight(line); break;
+                    case 'g': lineGrow(line, CAPPED_DOUBLE_SIZE(line->capacity)); break;
+                    case 's': 
+                              int f;
+                              scanf("%d", &f);
+                              lineShrink(line, f);
+                              break;
                     case 'm': 
-                              char b = getchar();
-                              int c = atoi(&b);
-                              lineMoveGap(line, c);
+                              int e;
+                              scanf("%d", &e);
+                              lineMoveGap(line, e);
                               break;
                             
                     default: lineInsertChar(line, a);

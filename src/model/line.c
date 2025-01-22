@@ -4,8 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* ---Line LL Element--- */
-
+/* ---BufferList/Buffer/Line (LL Element)--- */
 //                 gs-ge
 // [ c_0, c_1, c_2]
 Line_t* newLineString(char initStr[]) {
@@ -30,10 +29,8 @@ Line_t* newLineString(char initStr[]) {
 
 //                  gs       ge
 // [ c_0, c_1, c_2, _, _, _]
-
 Line_t* newLineN(size_t capacity) {
     Line_t* line_p = malloc(sizeof(Line_t));
-
     char* content = calloc(capacity, sizeof(char));
 
     /* Gap Buffer */
@@ -49,13 +46,10 @@ Line_t* newLineN(size_t capacity) {
 
     return line_p;
 }
-
-
 void destroyLine(Line_t* l) {
     free(l->content);
     free(l);
 }; 
-
 void lineLog(const Line_t l) {
     char* content = l.content;
     size_t cap = l.capacity;
@@ -64,12 +58,10 @@ void lineLog(const Line_t l) {
     str[cap+3-2] =  ']';
     str[cap+3-1] =  '\0';
     for(size_t i = 0; i < cap; i++) {
-        char c = content[i];
-        
         if (l.gapStart <= i && i < l.gapEnd) {
             str[i + 1] = '_';
         } else {
-            str[i + 1] = c;
+            str[i + 1] = content[i];
         }
     }
     Logf(">> LINE: %s | Capacity: %d | Size: %d | GS: %d | GE: %d", str, cap, l.size, l.gapStart, l.gapEnd);
@@ -77,10 +69,8 @@ void lineLog(const Line_t l) {
 
 // Insert
 bool lineInsertChar(Line_t* l, char c) {
-    if (lineNeedResize(l)){
-        if (!lineGrow(l, CAPPED_DOUBLE_SIZE(l->capacity))) {
-            return false;
-        }
+    if (LINE_NEED_RESIZE(l)){
+        if (!lineGrow(l, CAPPED_DOUBLE_SIZE(l->capacity))) { return false; }
     }
     l->content[l->gapStart++] = c;
     l->size++;
@@ -97,6 +87,12 @@ bool lineDeleteChar(Line_t* l) {
     if (l->gapStart == 0) return false;
     l->gapStart--;
     l->size--;
+
+    // If, after deleting, we are only using a quarter of the space ( [a, _, _, _] )
+    // Half the space ( [a, _, ] )
+    if (l->size <  l->capacity / 4) {
+        lineShrink(l, l->size / 2);
+    }
     return true;
 }
 
@@ -108,16 +104,13 @@ bool lineDeleteChar(Line_t* l) {
 //      the new gap starts at the index `i` maintaining gapStart,
 //      pushing the gapEnd, and data at indices i, i+1, i+2 etc. ahead
 //  `ge_0 == cap_0` dont move anything, just realloc and update pointers
-//
-// WARN:
-//  - Does not check for exceeding the MAX_BUF_SIZE
+// WARN: Does not check for exceeding the MAX_BUF_SIZE
 // TODO: Test switching to malloc instead of realloc for more "control"
 bool lineGrow(Line_t* l, size_t cap_1) {
     if (cap_1 <= l->capacity) return false;
-    int cap_0 = l->capacity;
+
     int ge_0 = l->gapEnd;
-    int num_bytes_right = cap_0 - ge_0;
-    int ge_1 = cap_1 - num_bytes_right;
+    int ge_1 = cap_1 - (LINE_RHS_LENGTH(l));
 
     // [a, b, c, _, _, d, e, f]                            
     
@@ -128,7 +121,7 @@ bool lineGrow(Line_t* l, size_t cap_1) {
     // Shift gap-right to the end of the new space
         // Copy gap-right [ge_0:cap_0)
         // to [ge_1:cap_1)
-    memmove(new_content + ge_1, new_content + ge_0, num_bytes_right);
+    memmove(new_content + ge_1, new_content + ge_0, LINE_RHS_LENGTH(l));
     // [a, b, c, _, _, _, _, _, _, _, _, _, _, d, e, f]
 
     l->gapEnd = ge_1;
@@ -137,11 +130,34 @@ bool lineGrow(Line_t* l, size_t cap_1) {
     return true;
 }
 
+
+bool lineShrink(Line_t* l, size_t cap_1) {
+    if (cap_1 >= l->capacity 
+            || cap_1 < l->size)
+        return false; 
+
+    char* content = l->content;
+    int cap_0 = l->capacity;
+    int ge_0 = l->gapEnd;
+
+    int ge_1 = ge_0 - cap_0 + cap_1; // = ge_0 - (cap_0 - cap_1) = ge_0 - cap_diff
+
+    memmove(content + ge_1, content + ge_0, LINE_RHS_LENGTH(l));
+    char* new_content = realloc(l->content, cap_1);
+
+    l->gapEnd = ge_1;
+    l->content = new_content;
+    l->capacity = cap_1;
+    return true;
+}
+
+
+
 bool lineMoveGap(Line_t* l, size_t gs_1) {
     size_t gs_0 = l->gapStart;
     size_t ge_0 = l->gapEnd;
 
-    // size_t gs_1 = new_gs;
+//  size_t gs_1 = new_gs;
     size_t ge_1 = gs_1 + ge_0 - gs_0;
 
 
@@ -150,10 +166,10 @@ bool lineMoveGap(Line_t* l, size_t gs_1) {
     ) return false;
 
     if (gs_0 < gs_1) { // Move Right
-        memmove(&l->content[gs_0], &l->content[ge_0], ge_1 - ge_0);
+        memmove(l->content + gs_0, l->content + ge_0, ge_1 - ge_0);
     }
     else if (gs_1 < gs_0) { // Move Left
-        memmove(&l->content[ge_1], &l->content[gs_1], gs_0 - gs_1);
+        memmove(l->content + ge_1, l->content + gs_1, gs_0 - gs_1);
     }
 
     l->gapStart = gs_1;
